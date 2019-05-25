@@ -1,0 +1,44 @@
+--- /var/www/html/moodle_20160301/mod/scorm/locallib.php	2015-03-26 15:49:01.000000000 +0900
++++ /var/www/html/moodle_20160301_analytics/mod/scorm/locallib.php	2017-02-25 01:15:25.000000000 +0900
+@@ -1385,6 +1385,41 @@
+     return $result;
+ }
+ 
++//
++// http://stackoverflow.com/questions/18128145/how-to-convert-scorm-2004-session-time-format-to-a-usable-datetime-format-in-sql
++//
++function formatDuration($duration)
++{
++    $count = preg_match('/P(([0-9]+)Y)?(([0-9]+)M)?(([0-9]+)D)?T?(([0-9]+)H)?(([0-9]+)M)?(([0-9]+)(\.[0-9]+)?S)?/', $duration, $matches);
++
++    if ($count)
++    {
++        $_years = (int) $matches[2];
++        $_months = (int) $matches[4];
++        $_days = (int) $matches[6];
++        $_hours = (int) $matches[8];
++        $_minutes = (int) $matches[10];
++        $_seconds = (int) $matches[12];
++    }
++    else
++    {
++        if (strstr($duration, ':'))
++        {
++            list($_hours, $_minutes, $_seconds) = explode(':', $duration);
++        }
++        else
++        {
++            $_hours = 0;
++            $_minutes = 0;
++            $_seconds = 0;
++        }
++    }
++
++    // I just ignore years, months and days as it is unlikely that a
++    // course would take any longer than 1 hour
++    return $_seconds + (($_minutes + ($_hours * 60)) * 60);
++}
++
+ function scorm_get_toc_object($user, $scorm, $currentorg='', $scoid='', $mode='normal', $attempt='', $play=false, $organizationsco=null) {
+     global $CFG, $DB, $PAGE, $OUTPUT;
+ 

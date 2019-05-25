@@ -1,0 +1,38 @@
+--- /var/www/html/moodle_20160301/mod/quiz/review.php	2015-03-26 15:49:01.000000000 +0900
++++ /var/www/html/moodle_20160301_analytics/mod/quiz/review.php	2017-03-07 18:58:05.000000000 +0900
+@@ -32,7 +32,7 @@
+ 
+ $attemptid = required_param('attempt', PARAM_INT);
+ $page      = optional_param('page', 0, PARAM_INT);
+-$showall   = optional_param('showall', 0, PARAM_BOOL);
++$showall   = optional_param('showall', 1, PARAM_BOOL);
+ 
+ $url = new moodle_url('/mod/quiz/review.php', array('attempt'=>$attemptid));
+ if ($page !== 0) {
+@@ -138,7 +138,7 @@
+         'title'   => $usrepicture,
+         'content' => new action_link(new moodle_url('/user/view.php', array(
+                                 'id' => $student->id, 'course' => $attemptobj->get_courseid())),
+-                          fullname($student, true)),
++                          $student->id),
+     );
+ }
+ 
+@@ -156,7 +156,7 @@
+ // Timing information.
+ $summarydata['startedon'] = array(
+     'title'   => get_string('startedon', 'quiz'),
+-    'content' => userdate($attempt->timestart),
++    'content' => $attempt->timestart,
+ );
+ 
+ $summarydata['state'] = array(
+@@ -167,7 +167,7 @@
+ if ($attempt->state == quiz_attempt::FINISHED) {
+     $summarydata['completedon'] = array(
+         'title'   => get_string('completedon', 'quiz'),
+-        'content' => userdate($attempt->timefinish),
++        'content' => $attempt->timefinish,
+     );
+     $summarydata['timetaken'] = array(
+         'title'   => get_string('timetaken', 'quiz'),
