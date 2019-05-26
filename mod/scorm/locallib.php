@@ -1514,7 +1514,6 @@ function formatDuration($duration)
     return $_seconds + (($_minutes + ($_hours * 60)) * 60);
 }
 
-
 function scorm_get_toc_object($user, $scorm, $currentorg='', $scoid='', $mode='normal', $attempt='',
                                 $play=false, $organizationsco=null) {
     global $CFG, $DB, $PAGE, $OUTPUT;

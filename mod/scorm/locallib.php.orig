@@ -21,11 +21,7 @@
  * @copyright  1999 onwards Roberto Pinna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-/**
- * mod-scorm:locallib.php has been modified by below.
- * @copyright  2016 ‘—§î•ñŠwŒ¤‹†Š/National Institute of Informatics
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+
 require_once("$CFG->dirroot/mod/scorm/lib.php");
 require_once("$CFG->libdir/filelib.php");
 
@@ -161,7 +157,6 @@ function scorm_get_popup_display_array() {
                  1 => get_string('popup', 'scorm'));
 }
 
-
 /**
  * Returns an array of the array of navigation buttons display options
  *
@@ -170,9 +165,7 @@ function scorm_get_popup_display_array() {
 function scorm_get_navigation_display_array() {
     return array(SCORM_NAV_DISABLED => get_string('no'),
                  SCORM_NAV_UNDER_CONTENT => get_string('undercontent', 'scorm'),
-                 SCORM_NAV_FLOATING => get_string('floating', 'scorm'),
-		 SCORM_NAV_UNDER_CONTENT_CHAPTER => get_string('overchapterfix', 'scorm'),
-                 SCORM_NAV_FLOATING_CHAPTER => get_string('overchapterfloat', 'scorm'));
+                 SCORM_NAV_FLOATING => get_string('floating', 'scorm'));
 }
 
 /**
