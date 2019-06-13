@@ -456,7 +456,7 @@ class report extends \mod_scorm\report {
                                     }
                                 } else {
                                     // If we don't have track data, we haven't attempted yet.
-                                    $strstatus = get_string('notattempted', 'scorm');
+                                    $strstatus = '';
                                     if (!$download) {
                                         $row[] = \html_writer::img($OUTPUT->pix_url('notattempted', 'scorm'), $strstatus,
                                                 array('title' => $strstatus)).\html_writer::empty_tag('br').$strstatus;
